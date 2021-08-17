@@ -9,7 +9,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const devConfig = require('./webpack.dev.config.js')
 const prodConfig = require('./webpack.prod.config.js')
 
-module.exports = ({ env }, { mode }) => {
+module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
   const isDev = env === 'dev'
 
   const { runtimeENV } = require(`./env/${env}`)
@@ -161,8 +161,8 @@ module.exports = ({ env }, { mode }) => {
       new VueLoaderPlugin(),
 
       new DefinePlugin({
-        '__VUE_OPTIONS_API__': true,
-        '__VUE_PROD_DEVTOOLS__': false,
+        __VUE_OPTIONS_API__: true,
+        __VUE_PROD_DEVTOOLS__: false,
         ENV: JSON.stringify(runtimeENV)
       })
     ]

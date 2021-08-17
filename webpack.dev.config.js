@@ -1,5 +1,6 @@
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin')
 const internalIp = require('internal-ip')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = env => {
   const { devServer } = require(`./env/${env}`)
@@ -17,8 +18,15 @@ module.exports = env => {
     plugins: [
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: {
-          messages: [`You application is running here http://localhost:${devServer.port} http://${internalIp.v4.sync()}:${devServer.port}`,],
+          messages: [
+            `You application is running here http://localhost:${devServer.port}`,
+            `You application is running here http://${internalIp.v4.sync()}:${devServer.port}`
+          ]
         }
+      }),
+
+      new ESLintPlugin({
+        extensions: ['js', 'vue']
       })
     ]
   }
