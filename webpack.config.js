@@ -1,5 +1,6 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
+const { VueLoaderPlugin } = require('vue-loader')
 const { DefinePlugin } = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -10,6 +11,8 @@ const prodConfig = require('./webpack.prod.config.js')
 
 module.exports = ({ env }, { mode }) => {
   const isDev = env === 'dev'
+
+  const { runtimeENV } = require(`./env/${env}`)
 
   const commonConfig = {
     entry: './src/index.js',
@@ -24,28 +27,111 @@ module.exports = ({ env }, { mode }) => {
         {
           test: /\.css$/,
 
-          use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader'
+          oneOf: [
+            {
+              resourceQuery: /module/,
+
+              use: [
+                isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                {
+                  loader: 'css-loader',
+                  options: {
+                    modules: {
+                      localIdentName: '[local]_[hash:base64:6]'
+                    }
+                  }
+                },
+                'postcss-loader'
+              ]
+            },
+
+            {
+              use: [
+                isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                'css-loader',
+                'postcss-loader'
+              ]
+            }
           ]
         },
 
         {
           test: /\.scss$/,
 
-          use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
-            'sass-loader'
+          oneOf: [
+            {
+              resourceQuery: /module/,
+
+              use: [
+                isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                {
+                  loader: 'css-loader',
+                  options: {
+                    modules: {
+                      localIdentName: '[local]_[hash:base64:6]'
+                    }
+                  }
+                },
+                'postcss-loader',
+                'sass-loader'
+              ]
+            },
+
+            {
+              use: [
+                isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                'css-loader',
+                'postcss-loader',
+                'sass-loader'
+              ]
+            }
           ]
+        },
+
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: 'babel-loader'
+        },
+
+        {
+          test: /\.ts$/,
+          use: 'ts-loader'
+        },
+
+        {
+          test: /\.vue$/,
+          use: 'vue-loader'
+        },
+
+        {
+          test: /\.(png|jpe?g|gif|svg)$/,
+          type: 'asset',
+
+          generator: {
+            filename: 'imgs/[name].[hash:6][ext]'
+          },
+
+          parser: {
+            dataUrlCondition: {
+              maxSize: 4096
+            }
+          }
+        },
+
+        {
+          test: /\.(eot|ttf|woff2?)$/,
+          type: 'asset/resource',
+
+          generator: {
+            filename: 'fonts/[name].[hash:6][ext]'
+          }
         }
       ]
     },
 
     resolve: {
-      extensions: ['.vue', '.js', '.json'],
+      extensions: ['.vue', '.js', '.ts', '.json'],
 
       alias: {
         '@': path.resolve(__dirname, './src')
@@ -70,6 +156,14 @@ module.exports = ({ env }, { mode }) => {
             }
           }
         ]
+      }),
+
+      new VueLoaderPlugin(),
+
+      new DefinePlugin({
+        '__VUE_OPTIONS_API__': true,
+        '__VUE_PROD_DEVTOOLS__': false,
+        ENV: JSON.stringify(runtimeENV)
       })
     ]
   }

@@ -1,13 +1,5 @@
-import _ from 'lodash'
-import './index.scss'
+import { createApp } from 'vue'
 
-import { sum } from '@/foo/index'
+import App from './App.vue'
 
-console.log(_.join(['Hello', 'World'], '-'))
-
-const dvElem = document.createElement('div')
-dvElem.innerHTML = 'title'
-dvElem.className = 'title'
-document.body.appendChild(dvElem)
-
-console.log(sum(2,3 ))
+createApp(App).mount('#app')
