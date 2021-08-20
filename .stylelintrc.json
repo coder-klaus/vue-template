@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-standard",
+
+  "rules": {
+    "selector-pseudo-element-no-unknown": [true, { "ignorePseudoElements": ["v-deep"] }]
+  },
+
+  "ignoreFiles": [
+    "node_modules",
+    "dist/**/*.css"
+  ]
+}

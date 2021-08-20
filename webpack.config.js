@@ -4,13 +4,17 @@ const { VueLoaderPlugin } = require('vue-loader')
 const { DefinePlugin } = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
+const StylelintPlugin = require('stylelint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const devConfig = require('./webpack.dev.config.js')
 const prodConfig = require('./webpack.prod.config.js')
 
 module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
-  const isDev = env === 'dev'
+  const isDev = mode === 'development'
+
+  process.env.NODE_ENV = mode
 
   const { runtimeENV } = require(`./env/${env}`)
 
@@ -90,7 +94,9 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
 
         {
           test: /\.js$/,
-          exclude: /node_modules/,
+          exclude: [
+            /node_modules/
+          ],
           use: 'babel-loader'
         },
 
@@ -159,6 +165,14 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
       }),
 
       new VueLoaderPlugin(),
+
+      new ESLintPlugin({
+        extensions: ['js', 'vue']
+      }),
+
+      new StylelintPlugin({
+        files: ['src/**/*.{vue,html,css,scss}']
+      }),
 
       new DefinePlugin({
         __VUE_OPTIONS_API__: true,

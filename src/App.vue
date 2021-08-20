@@ -19,6 +19,6 @@ export default {
 
 <style module>
 .title {
-  color: red
+  color: red;
 }
 </style>

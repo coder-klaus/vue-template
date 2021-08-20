@@ -1,12 +1,12 @@
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin')
 const internalIp = require('internal-ip')
-const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = env => {
   const { devServer } = require(`./env/${env}`)
 
   return {
     devServer: {
+      quiet: true,
       hot: true,
       stats: 'errors-warnings',
       host: '0.0.0.0',
@@ -23,10 +23,6 @@ module.exports = env => {
             `You application is running here http://${internalIp.v4.sync()}:${devServer.port}`
           ]
         }
-      }),
-
-      new ESLintPlugin({
-        extensions: ['js', 'vue']
       })
     ]
   }
