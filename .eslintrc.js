@@ -5,7 +5,7 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:vue/essential',
+    'plugin:vue/vue3-essential',
     'standard'
   ],
   parserOptions: {

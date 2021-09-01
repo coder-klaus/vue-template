@@ -1,6 +1,7 @@
 module.exports = {
   runtimeENV: {
-    API_ENV: 'dev'
+    API_ENV: 'dev',
+    API: 'https://api-sit.example.com/apiv1/'
   },
 
   devServer: {

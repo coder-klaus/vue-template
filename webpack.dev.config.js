@@ -10,7 +10,13 @@ module.exports = env => {
       hot: true,
       stats: 'errors-warnings',
       host: '0.0.0.0',
-      port: devServer.port
+      port: devServer.port,
+
+      // tmp
+      historyApiFallback: {
+        index: '/',
+        disableDotRule: true
+      }
     },
 
     devtool: 'cheap-module-source-map',
