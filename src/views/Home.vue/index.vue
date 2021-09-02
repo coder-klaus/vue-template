@@ -1,9 +1,5 @@
 <template>
-  <div>
+  <div class="-mobile-wrapper">
     Home
   </div>
 </template>
-
-<script setup>
-console.log(3333)
-</script>

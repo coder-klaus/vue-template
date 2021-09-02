@@ -55,6 +55,7 @@
     "@babel/runtime-corejs3": "^7.15.3",
     "dayjs": "^1.10.6",
     "lodash": "^4.17.21",
+    "normalize.css": "^8.0.1",
     "vue": "^3.2.2",
     "vue-router": "^4.0.11"
   }

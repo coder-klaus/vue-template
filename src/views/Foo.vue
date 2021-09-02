@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="-mobile-wrapper">
     foo
   </div>
 </template>

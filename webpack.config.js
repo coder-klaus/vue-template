@@ -11,6 +11,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const devConfig = require('./webpack.dev.config.js')
 const prodConfig = require('./webpack.prod.config.js')
 
+const { version } = require('./package.json')
+
 module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
   const isDev = mode === 'development'
 
@@ -146,7 +148,11 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
 
     plugins: [
       new HtmlWebpackPlugin({
-        template: './public/index.html'
+        template: './public/index.html',
+
+        meta: {
+          'x-version': version
+        }
       }),
 
       new CopyWebpackPlugin({
