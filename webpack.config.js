@@ -25,7 +25,8 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
 
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'js/[name].js'
+      filename: 'js/[name].js',
+      publicPath: '/'
     },
 
     module: {
@@ -183,7 +184,8 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
       new DefinePlugin({
         __VUE_OPTIONS_API__: true,
         __VUE_PROD_DEVTOOLS__: false,
-        ENV: JSON.stringify(runtimeENV)
+        ENV: JSON.stringify(runtimeENV),
+        VERSION: JSON.stringify(version)
       })
     ]
   }

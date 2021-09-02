@@ -6,13 +6,11 @@ module.exports = env => {
 
   return {
     devServer: {
-      quiet: true,
       hot: true,
       stats: 'errors-warnings',
       host: '0.0.0.0',
       port: devServer.port,
 
-      // tmp
       historyApiFallback: {
         index: '/',
         disableDotRule: true

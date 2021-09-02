@@ -1,6 +1,6 @@
 <template>
   <div class="-mobile-wrapper">
-    foo
+    传入的id: {{ id }}
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 // eslint-disable-next-line no-undef
 defineProps({
   id: {
-    type: Number,
+    type: String,
     require: true
   }
 })

@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/foo/:id',
     component: () => import('./views/Foo.vue'),
-    props: route => ({ id: parseInt(route.params.id) })
+    props: route => ({ id: route.params.id })
   },
 
   {
