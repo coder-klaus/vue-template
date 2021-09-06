@@ -10,7 +10,6 @@ module.exports = env => {
       port: devServer.port,
 
       historyApiFallback: {
-        index: '/',
         disableDotRule: true
       }
     },
