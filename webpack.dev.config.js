@@ -6,8 +6,6 @@ module.exports = env => {
 
   return {
     devServer: {
-      hot: true,
-      stats: 'errors-warnings',
       host: '0.0.0.0',
       port: devServer.port,
 
@@ -16,6 +14,8 @@ module.exports = env => {
         disableDotRule: true
       }
     },
+
+    stats: 'errors-warnings',
 
     devtool: 'cheap-module-source-map',
 
