@@ -45,7 +45,7 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
                   loader: 'css-loader',
                   options: {
                     modules: {
-                      localIdentName: '[local]_[hash:base64:6]'
+                      localIdentName: '[local]_[contenthash:base64:6]'
                     }
                   }
                 },
@@ -76,7 +76,7 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
                   loader: 'css-loader',
                   options: {
                     modules: {
-                      localIdentName: '[local]_[hash:base64:6]'
+                      localIdentName: '[local]_[content'ha'sh:base64:6]'
                     }
                   }
                 },
@@ -119,7 +119,7 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
           type: 'asset',
 
           generator: {
-            filename: 'imgs/[name].[hash:6][ext]'
+            filename: 'imgs/[name].[contenthash:6][ext]'
           },
 
           parser: {
@@ -134,7 +134,7 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
           type: 'asset/resource',
 
           generator: {
-            filename: 'fonts/[name].[hash:6][ext]'
+            filename: 'fonts/[name].[contenthash:6][ext]'
           }
         }
       ]

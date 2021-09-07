@@ -21,7 +21,7 @@ module.exports = {
     new CleanWebpackPlugin(),
 
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash:6].css'
+      filename: 'css/[name].[contenthash:6].css'
     })
   ]
 }
