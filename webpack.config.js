@@ -25,8 +25,8 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
 
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'js/[name].js',
-      chunkFilename: 'js/[id].chunk.js',
+      filename: 'js/[contenthash].js',
+      chunkFilename: 'js/[contenthash].chunk.js',
       publicPath: '/'
     },
 
@@ -76,7 +76,7 @@ module.exports = ({ env = 'dev' }, { mode = 'development' }) => {
                   loader: 'css-loader',
                   options: {
                     modules: {
-                      localIdentName: '[local]_[content'ha'sh:base64:6]'
+                      localIdentName: '[local]_[contenthash:base64:6]'
                     }
                   }
                 },
