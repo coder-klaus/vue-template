@@ -4,8 +4,8 @@
   "description": "simple vue3 scaffold based on webpack5",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack serve --mode=development --env env=dev",
-    "build": "webpack --mode=production "
+    "serve": "webpack serve --mode development --env env=dev",
+    "build": "webpack --mode production "
   },
   "keywords": [
     "vue",
