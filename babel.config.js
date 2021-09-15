@@ -7,8 +7,10 @@ module.exports = api => {
 
   const plugins = [
     ['@babel/plugin-transform-runtime', {
-      corejs: 3,
-      proposals: true
+      corejs: {
+        version: 3,
+        proposals: true
+      }
     }]
   ]
 
